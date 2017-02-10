@@ -9,8 +9,8 @@ output:
 
 
 ```{r setup, echo=FALSE}
-library(ISLR)
-library(arm)
+suppressMessages(library(ISLR))
+suppressMessages(library(arm))
 suppressMessages(library(ggplot2))
 suppressMessages(library(dplyr))
 suppressMessages(library(GGally))
@@ -83,34 +83,31 @@ where now RMSE = $\sqrt{\sum_{i = 1}^{n.test}(y_i - \hat{y}_i)^2/n.test}$ where 
 
 16.  While RMSE is a popular summary for model goodness of fit, coverage of confidence intervals is an alternative.
 For each case in the test set, find a 95% prediction interval.  Now evaluate if the responses in the test data are inside or outside of the intervals.   If we have the correct coverage, we would expect that at least 95\% of the intervals would contain the test cases.
-Write a function to calculate coverage (the input should be the fitted model object and the test data-frame) and then evaluate coverage for each of the 5 models that you fit  (the two normal, the two Poisson and the negative binomial).   Provide a table  with 
-the 1) RMSE's on the observed data, 2) RMSE's on the test data, 3) coverage, 4) the predictive check p-value with one row for each of the 5 models and comment the results.  Which model do you think is best? 
+Write a function to calculate coverage (the input should be the fitted model object and the test data-frame) and then evaluate coverage for each of the 5 models that you fit  (the two normal, the two Poisson and the negative binomial) including plots of the confidence intervals versus ordered by the prediction, with the left out data added as points.  Comment on the plots, highlighting any unusual colleges where the model predicts poorly.
 
-17.  For your "best" model  provide a nicely formatted table (use `kable()` or `xtable()`) of relative risks and 95% confidence intervals.  Do any of the intervals contain 1?   Pick 5 of the most important variables and provide a paragraph that provides an interpretation of the parameters (and intervals) that can be provided to a university admissions officer about which variables increase admissions.  
+17.  Provide a table  with 
+the 1) RMSE's on the observed data, 2) RMSE's on the test data, 3) coverage, 4) the predictive check p-value with one row for each of the 5 models and comment the results.  Which model do you think is best and why? 
+
+18.  For your "best" model  provide a nicely formatted table (use `kable()` or `xtable()`) of relative risks and 95% confidence intervals.  Pick 5 of the most important variables and provide a paragraph that provides an interpretation of the parameters (and intervals) that can be provided to a university admissions officer about which variables increase admissions.  
 
 ### Some Theory   
 
-18.   We have said that the residual deviance has a $\Chi^2$ distribution with $n - p - 1$  degrees of freedom (n - the number of parameters) if the model is correct.   What is the mean and standard deviation of the residual deviance?    Use the Empirical Rule to suggest an easy to compute cut-off for suggesting overdispersion.
+19.   We have said that the residual deviance has a $\chi^2$ distribution with $n - p - 1$  degrees of freedom (n - the number of parameters) if the model is correct.   What is the mean and standard deviation of the residual deviance?    Use the Empirical Rule to suggest an easy to use cut-off for suggesting overdispersion that you can calculate without a calculator.
 
-19.  Gamma mixtures of Poissons:  From class we said that
+20.  Gamma mixtures of Poissons:  From class we said that
 \begin{align}
-Y \mid \lambda & \sim \Poi(\lambda) \\
+Y \mid \lambda & \sim P(\lambda) \\
 p(y \mid \lambda) & = \frac{y^\lambda e^{-\lambda}} {y!} \\
 & \\
-\lambda \mid \mu, \theta & \sim \Gam(\theta, \theta/\mu)  \\
+\lambda \mid \mu, \theta & \sim G(\theta, \theta/\mu)  \\
 p(\lambda \mid  \mu, \theta) & = \frac{(\theta/ \mu)^\theta}{\Gamma(\theta)} \lambda^{\theta - 1} e^{- \lambda \theta/\mu} \\
 & \\
 p(Y \mid \mu, \theta) & = \int p(Y \mid \lambda) p(\lambda \mid \theta, \theta/\mu) d \lambda \\
  & =   \frac{ \Gamma(y + \theta)}{y! \Gamma(\theta)}
 \left(\frac{\theta}{\theta + \mu}\right)^{\theta}
 \left(\frac{\mu}{\theta + \mu}\right)^{y} \\
-Y \mid \mu, \theta & \sim \NB(\mu, \theta) 
+Y \mid \mu, \theta & \sim NB(\mu, \theta) 
 \end{align}
-Derive the density of $Y \mid \mu, \theta$ using LaTeX expressions.  (Note this may not display if the output format is html, so use pdf.)
+Derive the density of $Y \mid \mu, \theta$ in (8) showing your work using LaTeX expressions.  (Note this may not display if the output format is html, so please use pdf.)
+Using iterated expectations with the Gamma-Poisson mixture, find the mean and variance of $Y$, showing your work.
 
-20. Using iterated expectations with the Gamma-Poisson mixture, find the mean and variance of $Y$, showing your work.
-
-
-
-
-10 
