@@ -1,4 +1,4 @@
-box: merliseclyde/predictive-modeling
+box: rocker/verse
 
 build:
   steps:
@@ -9,4 +9,4 @@ build:
     - script:
         name: Render R markdown
         code: |
-          Rscript -e "library(rmarkdown);render('HW4.Rmd')"
+          Rscript -e "install.packages("ISLR"); library(rmarkdown);render('HW4.Rmd')"
