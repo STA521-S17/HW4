@@ -9,4 +9,4 @@ build:
     - script:
         name: Render R markdown
         code: |
-          Rscript -e "install.packages('ISLR',  repos='https://cloud.r-project.org'); library(rmarkdown);render('HW4.Rmd')"
+          Rscript -e "install.packages('ISLR',  repos='https://cloud.r-project.org'); install.packages('arm',  repos='https://cloud.r-project.org');library(rmarkdown);render('HW4.Rmd')"
