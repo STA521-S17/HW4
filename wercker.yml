@@ -1,4 +1,4 @@
-box: merliseclyde/predictive-modeling
+box: rocker/hadleyverse
 
 build:
   steps:
